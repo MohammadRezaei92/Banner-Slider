@@ -44,18 +44,24 @@ public class BannerFragment extends Fragment {
             imageView.setScaleType(banner.getScaleType());
             if (banner instanceof DrawableBanner) {
                 DrawableBanner drawableBanner = (DrawableBanner) banner;
-                Glide.with(getContext()).load(drawableBanner.getDrawable()).into(imageView);
+                Glide.with(getContext()).load(drawableBanner.getDrawable())
+                        .dontAnimate().into(imageView);
             } else {
                 final RemoteBanner remoteBanner = (RemoteBanner) banner;
                 if (remoteBanner.getErrorDrawable() == null && remoteBanner.getPlaceHolder() == 0) {
-                    Glide.with(getActivity()).load(remoteBanner.getUrl()).into(imageView);
+                    Glide.with(getActivity()).load(remoteBanner.getUrl())
+                            .dontAnimate().into(imageView);
                 } else {
                     if (remoteBanner.getPlaceHolder() != 0 && remoteBanner.getErrorDrawable() != null) {
-                        Glide.with(getActivity()).load(remoteBanner.getUrl()).placeholder(remoteBanner.getPlaceHolder()).error(remoteBanner.getErrorDrawable()).into(imageView);
+                        Glide.with(getActivity()).load(remoteBanner.getUrl())
+                                .placeholder(remoteBanner.getPlaceHolder()).error(remoteBanner.getErrorDrawable())
+                                .dontAnimate().into(imageView);
                     } else if (remoteBanner.getErrorDrawable() != null) {
-                        Glide.with(getActivity()).load(remoteBanner.getUrl()).error(remoteBanner.getErrorDrawable()).into(imageView);
+                        Glide.with(getActivity()).load(remoteBanner.getUrl()).error(remoteBanner.getErrorDrawable())
+                                .dontAnimate().into(imageView);
                     } else if (remoteBanner.getPlaceHolder() != 0) {
-                        Glide.with(getActivity()).load(remoteBanner.getUrl()).placeholder(remoteBanner.getPlaceHolder()).into(imageView);
+                        Glide.with(getActivity()).load(remoteBanner.getUrl()).placeholder(remoteBanner.getPlaceHolder())
+                                .dontAnimate().into(imageView);
                     }
                 }
             }
